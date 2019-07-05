@@ -5,6 +5,11 @@ var connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:11
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
 
+connection.on("GetQrCode", (url, data) => {
+    document.getElementById("qrUrl").innerHTML = url;
+    document.getElementById("qrCode").src = data;
+});
+
 connection.on("ReceiveSomething", (user, message) => {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = user + ": \"" + msg + "\"";
@@ -13,17 +18,19 @@ connection.on("ReceiveSomething", (user, message) => {
     document.getElementById("messagesList").appendChild(li);
 });
 
-connection.start().then(function(){
+connection.start().then(() => {
     document.getElementById("sendButton").disabled = false;
     console.log("SignalR connection success");
-}).catch(function (err) {
+}).catch((err) => {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
+document.getElementById("sendButton").addEventListener("click", (event) => {
     var name = document.getElementById("name").value;
-    connection.invoke("SendSomethingFromClient", name, "Ping at "+Date.now()).catch(function (err) {
-        return console.error(err.toString());
-    });
+    connection
+        .invoke("SendSomethingFromClient", name, "Ping at "+Date.now())
+        .catch((err) => {
+            return console.error(err.toString());
+        });
     event.preventDefault();
 });
