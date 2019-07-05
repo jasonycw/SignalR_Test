@@ -10,9 +10,9 @@ namespace SignalR_Server.Controllers
     [ApiController]
     public class SomeController : ControllerBase
     {
-        private readonly IHubContext<SomeHub> someHub;
-        public SomeController(IHubContext<SomeHub> someHub) 
-            => this.someHub = someHub;
+        private readonly IHubContext<SomeHub, ISomeClient> _someHub;
+        public SomeController(IHubContext<SomeHub, ISomeClient> someHub) 
+            => _someHub = someHub;
 
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get() 
@@ -20,6 +20,10 @@ namespace SignalR_Server.Controllers
 
         [HttpGet("{something}")]
         public async Task Get(string something) 
-            => await someHub.Clients.All.SendAsync("ReceiveSomething", "From Server", something);
+            => await _someHub.Clients.All.ReceiveSomething("From Server", something);
+
+        [HttpGet("client/{clientId}/{something}")]
+        public async Task Get(string clientId, string something) 
+            => await _someHub.Clients.Client(clientId).ReceiveSomething("From Server", something);
     }
 }

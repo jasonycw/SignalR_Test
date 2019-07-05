@@ -21,7 +21,8 @@ connection.start().then(function(){
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
-    connection.invoke("SendSomething", "Client", "Clicked").catch(function (err) {
+    var name = document.getElementById("name").value;
+    connection.invoke("SendSomethingFromClient", name, "Ping at "+Date.now()).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
