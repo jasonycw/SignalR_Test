@@ -16,10 +16,10 @@ namespace SignalR_Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR(options =>
-            {
-                options.EnableDetailedErrors = true;
-            });
+            services
+                .AddSignalR(options => options.EnableDetailedErrors = true)
+                //.AddRedis() // For syncing clients across servers
+                ;
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
         }
 
