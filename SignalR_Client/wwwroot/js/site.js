@@ -1,4 +1,6 @@
-﻿var connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:11978/SomeHub").build();
+﻿"use strict";
+
+var connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:11978/SomeHub").build();
 
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
