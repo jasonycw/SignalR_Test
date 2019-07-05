@@ -5,7 +5,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:11
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
 
-connection.on("ReceiveSomething", function (user, message) {
+connection.on("ReceiveSomething", (user, message) => {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = user + ": \"" + msg + "\"";
     var li = document.createElement("li");
@@ -21,7 +21,7 @@ connection.start().then(function(){
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
-    connection.invoke("SendSomething", "Test User", "Hello World").catch(function (err) {
+    connection.invoke("SendSomething", "Client", "Clicked").catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();

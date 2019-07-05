@@ -20,6 +20,6 @@ namespace SignalR_Server.Controllers
 
         [HttpGet("{something}")]
         public async Task Get(string something) 
-            => await someHub.Clients.All.SendAsync("ReceiveSomething", "Jason", something);
+            => await someHub.Clients.All.SendAsync("ReceiveSomething", "From Server", something);
     }
 }
