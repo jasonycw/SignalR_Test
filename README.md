@@ -12,16 +12,16 @@
 
  ## Flow
  ```
-      Server          |      Client
+       Server           |      Client
 ---------------------------------------------
 1. MapHub in Startup   | 
 2.                     |  Setup the connection
-                       |  and events
+                        |  and events
 3. OnConnectedAsync   <-- Connect to a hub
-                       |
+                        |
 4. Send some events   --> On receive event,
-                       |   do something
-                       |  
+                        |   do something
+                        |  
 4. Hub method trigger <-- Invoke hub method
-                       |
+                        |
  ```
