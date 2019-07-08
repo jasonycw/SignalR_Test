@@ -13,6 +13,11 @@ connection.on("GetQrCode", (url, data) => {
     document.getElementById("qrCode").src = data;
 });
 
+connection.on("Login", (token) => {
+    //TODO: Use the token to do login and redirect
+    alert("Login: " + token);
+});
+
 connection.on("ReceiveSomething", (user, message) => {
     // Do whatever you want here
 

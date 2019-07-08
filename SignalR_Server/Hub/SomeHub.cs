@@ -11,9 +11,12 @@ namespace SignalR_Server.Hub
 
         public override async Task OnConnectedAsync()
         {
+            // Just test sending message to client
             await Clients.All.ReceiveSomething("Notification", $"{Context.ConnectionId} is connected");
             await Clients.Client(Context.ConnectionId).ReceiveSomething("Friendly neighbourhood", $"Call `http://localhost:11978/api/some/client/{Context.ConnectionId}/type_something`");
-            var url = $"http://localhost:11978/api/some/client/{Context.ConnectionId}/login";
+
+            // Generate QR Code to client for all connections
+            var url = $"http://localhost:11978/api/some/login/{Context.ConnectionId}";
             await Clients.Client(Context.ConnectionId).GetQrCode(url, QrCodeHelper.Generate(url));
         }
 
@@ -26,5 +29,6 @@ namespace SignalR_Server.Hub
     {
         Task ReceiveSomething(string user, string message);
         Task GetQrCode(string url, string data);
+        Task Login(string token);
     }
 }

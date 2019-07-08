@@ -25,5 +25,10 @@ namespace SignalR_Server.Controllers
         [HttpGet("client/{clientId}/{something}")]
         public async Task Get(string clientId, string something) 
             => await _someHub.Clients.Client(clientId).ReceiveSomething("From Server", something);
+
+        //[Authorize] //TODO: Pass the login token to client for login
+        [HttpGet("login/{clientId}")]
+        public async Task Login(string clientId) 
+            => await _someHub.Clients.Client(clientId).Login("login_token from request header");
     }
 }
