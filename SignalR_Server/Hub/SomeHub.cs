@@ -6,8 +6,6 @@ namespace SignalR_Server.Hub
 {
     public class SomeHub : Hub<ISomeClient>
     {
-
-
         public async Task SendSomethingFromClient(string user, string message)
             => await Clients.Others.ReceiveSomething($"{user} ({Context.ConnectionId})", message);
 
@@ -20,10 +18,10 @@ namespace SignalR_Server.Hub
         }
     }
 
+    // These are the event that client can received
     public interface ISomeClient
     {
         Task ReceiveSomething(string user, string message);
-
         Task GetQrCode(string url, string data);
     }
 }

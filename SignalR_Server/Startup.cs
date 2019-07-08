@@ -40,7 +40,7 @@ namespace SignalR_Server
             });
             app.UseSignalR(route =>
             {
-                route.MapHub<SomeHub>($"/{nameof(SomeHub)}");
+                route.MapHub<SomeHub>($"/{nameof(SomeHub)}");// This is the hub URL
             });
             app.UseMvc();
         }

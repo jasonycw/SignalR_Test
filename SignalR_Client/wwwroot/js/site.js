@@ -14,6 +14,8 @@ connection.on("GetQrCode", (url, data) => {
 });
 
 connection.on("ReceiveSomething", (user, message) => {
+    // Do whatever you want here
+
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = user + ": \"" + msg + "\"";
     var li = document.createElement("li");
@@ -30,8 +32,9 @@ connection.start().then(() => {
 
 document.getElementById("sendButton").addEventListener("click", (event) => {
     var name = document.getElementById("name").value;
+
     connection
-        .invoke("SendSomethingFromClient", name, "Ping at "+Date.now())
+        .invoke("SendSomethingFromClient", name, "Ping at "+Date.now()) // Trigger a hub method
         .catch((err) => {
             return console.error(err.toString());
         });
