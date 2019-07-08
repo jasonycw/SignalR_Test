@@ -16,6 +16,9 @@ namespace SignalR_Server.Hub
             var url = $"http://localhost:11978/api/some/client/{Context.ConnectionId}/login";
             await Clients.Client(Context.ConnectionId).GetQrCode(url, QrCodeHelper.Generate(url));
         }
+
+        public override async Task OnDisconnectedAsync(Exception exception) 
+            => await Clients.Others.ReceiveSomething("From Server", $"{Context.ConnectionId} has disconnected");
     }
 
     // These are the event that client can received
