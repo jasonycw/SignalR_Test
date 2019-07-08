@@ -1,4 +1,6 @@
 ## How it works? 
+Client start the connection by calling `..../SomeHub/negotiate` to receive the transport methodology
+During the life cycle (mostlikely websocket), message are transfered through `..../SomeHub?id=______`
 ```
  -------------------------------       ---------------------------------
 | Server                        |     | Client                          |
@@ -25,4 +27,5 @@
 4. Hub method trigger <-- Invoke hub method
                         |
 5. OnDisconnectedAsync<-- End of life cycle
+                        |
  ```
