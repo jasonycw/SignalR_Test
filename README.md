@@ -16,7 +16,7 @@
 ---------------------------------------------
 1. MapHub in Startup   | 
 2.                     |  Setup the connection
-                        |  and events
+                        |   and events
 3. OnConnectedAsync   <-- Connect to a hub
                         |
 4. Send some events   --> On receive event,
@@ -24,4 +24,5 @@
                         |  
 4. Hub method trigger <-- Invoke hub method
                         |
+5. OnDisconnectedAsync<-- End of life cycle
  ```
