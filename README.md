@@ -1,5 +1,6 @@
 ## How it works? 
 Client start the connection by calling `..../SomeHub/negotiate` to receive the transport methodology
+
 During the life cycle (mostlikely websocket), message are transfered through `..../SomeHub?id=______`
 ```
  -------------------------------       ---------------------------------
