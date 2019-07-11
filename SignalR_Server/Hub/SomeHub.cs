@@ -6,9 +6,6 @@ namespace SignalR_Server.Hub
 {
     public class SomeHub : Hub<ISomeClient>
     {
-        public async Task Login(string connectionId)
-            => await Clients.Client(connectionId).Login($"{Context.ConnectionId} tell you to login");
-
         public async Task SendSomethingFromClient(string user, string message)
             => await Clients.Others.ReceiveSomething($"{user} ({Context.ConnectionId})", message);
 
