@@ -28,7 +28,10 @@ namespace SignalR_Server.Controllers
 
         //[Authorize] //TODO: Pass the login token to client for login
         [HttpGet("login/{clientId}")]
-        public async Task Login(string clientId) 
-            => await _someHub.Clients.Client(clientId).Login("login_token from request header");
+        public async Task Login(string clientId)
+        {
+            // Call other API + get token
+            await _someHub.Clients.Client(clientId).Login("login_token from request header");
+        }
     }
 }
